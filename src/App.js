@@ -1,13 +1,12 @@
-import logo from './logo.svg';
 import Lot from './Component/Lot'
 import './App.css';
 import {useState} from "react";
 import SingleLot from "./Component/SingleLot";
 import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AcceptVehicleForm from "./Component/AcceptVehicleForm";
 
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
   const [third, setThird] = useState({});
 
   const [showForm, setShowForm] = useState(false);
-
   const handleShowForm = () => setShowForm(true);
   const handleCloseForm = () => setShowForm(false);
 
@@ -32,26 +30,7 @@ function App() {
           <SingleLot name={"Third Lot"} lot={third}></SingleLot>
           <Button variant={"outline-info"} size={"lg"} onClick={handleShowForm}>Accept Vehicle</Button>
 
-          <Modal
-            show={showForm}
-            onHide={handleCloseForm}
-            backdrop={"static"}
-            keyboard={false}
-          >
-              <Modal.Header closeButton>
-                    <Modal.Title>Register a vehicle</Modal.Title>
-              </Modal.Header>
-
-                <Modal.Body>
-                Enter vehicle info here.
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant={"info"} onClick={handleCloseForm}>
-                        Complete
-                    </Button>
-                </Modal.Footer>
-
-          </Modal>
+          <AcceptVehicleForm show={showForm} handleClose={handleCloseForm}></AcceptVehicleForm>
       </>
   );
 }
