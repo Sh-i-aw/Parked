@@ -17,7 +17,21 @@ function SingleLot (props) {
           </Modal.Header>
 
           <Modal.Body>
-              Enter vehicle info here.
+              <Form>
+                  <Form.Group>
+                      <Form.Label>License Plate</Form.Label>
+                      <Form.Control type="text" placeholder={"Enter license plate"}/>
+                  </Form.Group>
+                  <Form.Group>
+                      <Form.Label>Select Lot</Form.Label>
+                      <Form.Select>
+                          <option>Allocate lot to vehicle</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                      </Form.Select>
+                  </Form.Group>
+              </Form>
           </Modal.Body>
           <Modal.Footer>
               <Button variant={"info"} onClick={handleClose}>
