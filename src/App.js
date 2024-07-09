@@ -1,4 +1,4 @@
-import Lot from './Component/Lot'
+import {Garage} from './Component/Lot'
 import './App.css';
 import {useState} from "react";
 import SingleLot from "./Component/SingleLot";
@@ -10,7 +10,7 @@ import AcceptVehicleForm from "./Component/AcceptVehicleForm";
 
 
 function App() {
-  const [garageFull, setGarageFull] = useState(false);
+  const [garage, setGarage] = useState(new Garage());
   const [first, setFirst] = useState({});
   const [second, setSecond] = useState({});
   const [third, setThird] = useState({});
@@ -19,15 +19,12 @@ function App() {
   const handleShowForm = () => setShowForm(true);
   const handleCloseForm = () => setShowForm(false);
 
-    function isEmptyLot (lot) {
-        return Object.keys(lot).length === 0;
-    }
-
   return (
       <>
-          <SingleLot name={"First lot"} lot={first}></SingleLot>
-          <SingleLot name={"Second Lot"} lot={second}></SingleLot>
-          <SingleLot name={"Third Lot"} lot={third}></SingleLot>
+          {
+              garage.lots.map((lot, index) => <SingleLot name={index + 1} lot={lot}/>)
+
+          }
           <Button variant={"outline-info"} size={"lg"} onClick={handleShowForm}>Accept Vehicle</Button>
 
           <AcceptVehicleForm show={showForm} handleClose={handleCloseForm}></AcceptVehicleForm>

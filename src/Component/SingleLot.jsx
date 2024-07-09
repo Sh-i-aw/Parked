@@ -1,14 +1,13 @@
 
 function SingleLot (props) {
     const {name, lot} = props
-    function isEmptyLot (lot) {
-        return Object.keys(lot).length === 0;
-    }
 
-    let status = isEmptyLot(lot) ? "Empty" : "Not Empty";
+    let status = lot.occupied ? "Not Empty" : "Empty";
+
     return (
         <div>
             <h2>{name}</h2>
+            <p>{lot.plateNumber}</p>
             <p>{status}</p>
 
             <br/>
