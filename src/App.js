@@ -11,13 +11,13 @@ import AcceptVehicleForm from "./Component/AcceptVehicleForm";
 
 function App() {
   const [garage, setGarage] = useState(new Garage());
-  const [first, setFirst] = useState({});
-  const [second, setSecond] = useState({});
-  const [third, setThird] = useState({});
-
   const [showForm, setShowForm] = useState(false);
   const handleShowForm = () => setShowForm(true);
   const handleCloseForm = () => setShowForm(false);
+
+  const registerVehicle = (parkedVehicle) => {
+      console.log(parkedVehicle);
+  }
 
   return (
       <>
