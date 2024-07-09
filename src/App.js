@@ -27,7 +27,7 @@ function App() {
           }
           <Button variant={"outline-info"} size={"lg"} onClick={handleShowForm}>Accept Vehicle</Button>
 
-          <AcceptVehicleForm show={showForm} handleClose={handleCloseForm}></AcceptVehicleForm>
+          <AcceptVehicleForm show={showForm} handleClose={handleCloseForm} lots={garage.lots}></AcceptVehicleForm>
       </>
   );
 }

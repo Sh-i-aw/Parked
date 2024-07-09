@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form'
 
 function SingleLot (props) {
-  const {show, handleClose} = props;
+  const {lots, show, handleClose} = props;
 
   return (
       <Modal
@@ -22,13 +22,12 @@ function SingleLot (props) {
                       <Form.Label>License Plate</Form.Label>
                       <Form.Control type="text" placeholder={"Enter license plate"}/>
                   </Form.Group>
-                  <Form.Group>
-                      <Form.Label>Select Lot</Form.Label>
+                  <Form.Group className={"mt-4"}>
                       <Form.Select>
                           <option>Allocate lot to vehicle</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          {
+                            lots.map ((lot, index) => <option disabled={lot.occupied}>{index + 1}</option>)
+                          }
                       </Form.Select>
                   </Form.Group>
               </Form>
