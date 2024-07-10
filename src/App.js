@@ -19,7 +19,7 @@ function App() {
     const [showReleaseForm, setShowReleaseForm] = useState(false);
     const handleShowAcceptForm = () => setShowAcceptForm(true);
     const handleCloseAcceptForm = () => setShowAcceptForm(false);
-    const handleShowReleaseForm = (status) => setShowReleaseForm(status);
+    const handleShowReleaseForm = (lotToRelease) => setShowReleaseForm(lotToRelease);
     const handleCloseReleaseForm = () => setShowReleaseForm(false);
 
 
@@ -46,7 +46,7 @@ function App() {
           {
               garage.lots.map((lot) => {
                   return <SingleLot key={lot.lotNumber}
-                                    showReleaseForm={showReleaseForm}
+                                    showReleaseForm={showReleaseForm === lot.lotNumber}
                                     handleOpen={handleShowReleaseForm}
                                     handleClose={handleCloseReleaseForm}
                                     lot={lot}/>

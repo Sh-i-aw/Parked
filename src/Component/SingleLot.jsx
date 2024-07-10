@@ -7,7 +7,7 @@ function SingleLot (props) {
     let status = lot.occupied ? "Not Empty" : "Empty";
 
     const openForm = () => {
-        handleOpen(true);
+        handleOpen(lot.lotNumber);
     }
 
     return (

@@ -5,8 +5,6 @@ import '../App.css';
 function ReleaseVehicleForm (props) {
     const {lot, show, handleClose, releaseVehicle} = props;
 
-    console.log(`Lot number is ${lot.lotNumber}`);
-
     const acceptAndRelease= () => {
         releaseVehicle(lot.lotNumber);
         handleClose();
@@ -20,7 +18,7 @@ function ReleaseVehicleForm (props) {
           keyboard={false}
         >
             <Modal.Header closeButton>
-                <Modal.Title>{lot.plateNumber}</Modal.Title>
+                <Modal.Title>H343{lot.plateNumber}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
