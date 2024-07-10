@@ -3,12 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form'
 import {useState} from "react";
 import '../App.css';
+import dayjs from "dayjs";
 
 function AcceptVehicleForm(props) {
     const {lots, show, handleClose, registerVehicle} = props;
     const [plateNumber, setPlateNumber] = useState('');
     const [selectedLot, setSelectedLot] = useState(null);
     const [invalid, setInvalid] = useState(false);
+
 
     const handlePlateNumberChange = (e) => setPlateNumber(e.target.value);
     const handleLotChange = (e) => {
@@ -27,7 +29,7 @@ function AcceptVehicleForm(props) {
         let parkedVehicle = {
             lot: selectedLot,
             plate : plateNumber,
-            parkedTime: new Date(),
+            entryTime: dayjs(),
         }
         console.log(parkedVehicle);
         registerVehicle(parkedVehicle);

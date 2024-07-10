@@ -29,7 +29,7 @@ function App() {
           ...newLots[parkedVehicle.lot - 1],
           occupied: true,
           plateNumber: parkedVehicle.plate,
-          timeParked: parkedVehicle.parkedTime,
+          entryTime: parkedVehicle.entryTime,
       };
 
       const newGarage = {

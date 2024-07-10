@@ -3,7 +3,9 @@ class Lot {
         this.lotNumber = lotNumber;
         this.occupied = occupied;
         this.plateNumber = plateNumber;
-        this.timeParked = timeParked;
+        this.entryTime = timeParked;
+        this.duration = 0;
+        this.totalCharge = 0;
     }
 }
 
