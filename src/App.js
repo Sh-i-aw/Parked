@@ -1,12 +1,16 @@
-import {Garage} from './Component/Lot'
 import './App.css';
-import {useState} from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {Garage} from './Component/Lot'
 import SingleLot from "./Component/SingleLot";
+import AcceptVehicleForm from "./Component/AcceptVehicleForm";
+
+import {useState} from "react";
 import Button from 'react-bootstrap/Button'
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AcceptVehicleForm from "./Component/AcceptVehicleForm";
+
+
 
 
 function App() {
@@ -35,7 +39,7 @@ function App() {
   return (
       <>
           {
-              garage.lots.map((lot, index) => <SingleLot name={index + 1} lot={lot}/>)
+              garage.lots.map((lot) => <SingleLot key={lot.lotNumber} name={lot.lotNumber} lot={lot}/>)
 
           }
           <Button variant={"outline-info"} size={"lg"} onClick={handleShowForm}>Accept Vehicle</Button>

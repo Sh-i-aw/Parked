@@ -12,6 +12,7 @@ function SingleLot (props) {
             <p>{status}</p>
 
             <br/>
+
         </div>
     )
 }
