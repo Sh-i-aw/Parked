@@ -5,7 +5,7 @@ import {Garage} from './Component/Lot'
 import SingleLot from "./Component/SingleLot";
 import AcceptVehicleForm from "./Component/AcceptVehicleForm";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button'
 
 
@@ -16,11 +16,35 @@ import Button from 'react-bootstrap/Button'
 function App() {
     const [garage, setGarage] = useState(new Garage());
     const [showAcceptForm, setShowAcceptForm] = useState(false);
-    const [showReleaseForm, setShowReleaseForm] = useState(false);
+    const [showReleaseForm, setShowReleaseForm] = useState(0);
+    const [lotToFree, setLotToFree] = useState(0);
     const handleShowAcceptForm = () => setShowAcceptForm(true);
     const handleCloseAcceptForm = () => setShowAcceptForm(false);
-    const handleCloseReleaseForm = () => setShowReleaseForm(false);
+    const handleCloseReleaseForm = () => setShowReleaseForm(0);
 
+
+    useEffect(() => {
+        if (lotToFree === 0) return;
+        const newLots = [...garage.lots];
+        newLots[lotToFree - 1] = {
+            ...newLots[lotToFree - 1],
+            occupied: false,
+            plateNumber: "",
+            entryTime : null,
+            duration : 0,
+            totalCharge: 0,
+        }
+
+        const newGarage = {
+            ...garage,
+            lots: newLots,
+            occupancy: garage.occupancy - 1,
+            isFull: false,
+        }
+
+        setGarage(newGarage);
+
+    }, [lotToFree]);
 
   const registerVehicle = (parkedVehicle) => {
 
@@ -31,23 +55,28 @@ function App() {
           plateNumber: parkedVehicle.plate,
           entryTime: parkedVehicle.entryTime,
       };
-
+      console.log(garage.occupancy);
       const newGarage = {
           ...garage,
           lots: newLots,
+          occupancy: garage.occupancy + 1,
+          isFull: garage.occupancy + 1 === 3,
       };
-
       setGarage(newGarage);
   }
 
   return (
       <>
+          <h3>Garage Status</h3>
+          <h3>Occupancy: {garage.occupancy}</h3>
+          <h3>IsFull: {garage.isFull ? 'yup' : 'nah-uh'}</h3>
           {
               garage.lots.map((lot) => {
                   return <SingleLot key={lot.lotNumber}
-                                    showReleaseForm={showReleaseForm === lot.lotNumber}
+                                    shouldShowForm={showReleaseForm === lot.lotNumber}
                                     openForm={lotToRelease => setShowReleaseForm(lotToRelease)}
-                                    handleClose={handleCloseReleaseForm}
+                                    closeForm={handleCloseReleaseForm}
+                                    releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
                                     lot={lot}/>
               })
           }

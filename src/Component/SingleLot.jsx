@@ -14,12 +14,12 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 function SingleLot (props) {
-    const {showReleaseForm, lot, openForm, handleClose} = props
+    const {shouldShowForm, lot, openForm, closeForm, releaseVehicle} = props
 
     const [timeElapsed, setTimeElapsed] = useState(dayjs().diff(lot.entryTime, 'second'));
 
     useEffect(() => {
-        if (showReleaseForm){
+        if (shouldShowForm){
             return;
         }
         const interval = setInterval(() => {
@@ -27,7 +27,7 @@ function SingleLot (props) {
         }, 1000)
 
         return () => clearInterval(interval);
-    }, [lot.entryTime, showReleaseForm]);
+    }, [lot.entryTime, shouldShowForm]);
 
     let status = lot.occupied ? "Not Empty" : "Empty";
 
@@ -53,7 +53,11 @@ function SingleLot (props) {
                     (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>+</Button>)
             }
 
-            <ReleaseVehicleForm show={showReleaseForm} handleClose={handleClose} lot={lot}></ReleaseVehicleForm>
+            <ReleaseVehicleForm
+                show={shouldShowForm}
+                closeForm={closeForm}
+                acceptAndRelease ={() => releaseVehicle(lot.lotNumber)}
+                lot={lot}></ReleaseVehicleForm>
         </div>
     )
 }

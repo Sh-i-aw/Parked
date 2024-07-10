@@ -1,21 +1,19 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import '../App.css';
-import {useState} from "react";
-const dayjs = require('dayjs');
 
 function ReleaseVehicleForm (props) {
-    const {lot, show, handleClose, releaseVehicle} = props;
+    const {lot, show, closeForm, acceptAndRelease} = props;
 
-    const acceptAndRelease = () => {
-        releaseVehicle(lot.lotNumber);
-        handleClose();
+    const release = () => {
+        acceptAndRelease();
+        closeForm();
     }
 
     return (
         <Modal
           show={show}
-          onHide={handleClose}
+          onHide={closeForm}
           backdrop={"static"}
           keyboard={false}
         >
@@ -29,10 +27,10 @@ function ReleaseVehicleForm (props) {
                 <label>Parked Duration {lot.duration}</label>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={"light"} onClick={handleClose}>
+                <Button variant={"light"} onClick={closeForm}>
                     Cancel
                 </Button>
-                <Button variant={"info"} onClick={acceptAndRelease}>
+                <Button variant={"info"} onClick={release}>
                     Accept Payment
                 </Button>
             </Modal.Footer>
