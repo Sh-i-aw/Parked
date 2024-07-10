@@ -24,7 +24,8 @@ function ReleaseVehicleForm (props) {
             </Modal.Header>
 
             <Modal.Body>
-                <label>Total Charge</label>
+                <label>Total Charge {`$${lot.totalCharge}`}</label>
+                <br/>
                 <label>Parked Duration {lot.duration}</label>
             </Modal.Body>
             <Modal.Footer>
