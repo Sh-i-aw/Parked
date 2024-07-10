@@ -14,12 +14,17 @@ import Button from 'react-bootstrap/Button'
 
 
 function App() {
-  const [garage, setGarage] = useState(new Garage());
-  const [showForm, setShowForm] = useState(false);
-  const handleShowForm = () => setShowForm(true);
-  const handleCloseForm = () => setShowForm(false);
+    const [garage, setGarage] = useState(new Garage());
+    const [showAcceptForm, setShowAcceptForm] = useState(false);
+    const [showReleaseForm, setShowReleaseForm] = useState(false);
+    const handleShowAcceptForm = () => setShowAcceptForm(true);
+    const handleCloseAcceptForm = () => setShowAcceptForm(false);
+    const handleShowReleaseForm = (status) => setShowReleaseForm(status);
+    const handleCloseReleaseForm = () => setShowReleaseForm(false);
+
 
   const registerVehicle = (parkedVehicle) => {
+
       const newLots = [...garage.lots];
       newLots[parkedVehicle.lot - 1]  = {
           ...newLots[parkedVehicle.lot - 1],
@@ -39,12 +44,17 @@ function App() {
   return (
       <>
           {
-              garage.lots.map((lot) => <SingleLot key={lot.lotNumber} name={lot.lotNumber} lot={lot}/>)
-
+              garage.lots.map((lot) => {
+                  return <SingleLot key={lot.lotNumber}
+                                    showReleaseForm={showReleaseForm}
+                                    handleOpen={handleShowReleaseForm}
+                                    handleClose={handleCloseReleaseForm}
+                                    lot={lot}/>
+              })
           }
-          <Button variant={"outline-info"} size={"lg"} onClick={handleShowForm}>Accept Vehicle</Button>
 
-          <AcceptVehicleForm show={showForm} handleClose={handleCloseForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptVehicleForm>
+          <Button variant={"outline-info"} size={"lg"} onClick={handleShowAcceptForm}>Accept Vehicle</Button>
+          <AcceptVehicleForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptVehicleForm>
       </>
   );
 }
