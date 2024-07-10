@@ -2,13 +2,9 @@ import Button from "react-bootstrap/Button";
 import ReleaseVehicleForm from "./ReleaseVehicleForm";
 
 function SingleLot (props) {
-    const {showReleaseForm, lot, handleOpen, handleClose} = props
+    const {showReleaseForm, lot, openForm, handleClose} = props
     console.log(`show is ${showReleaseForm} for lot ${lot.lotNumber}`);
     let status = lot.occupied ? "Not Empty" : "Empty";
-
-    const openForm = () => {
-        handleOpen(lot.lotNumber);
-    }
 
     return (
         <div>
@@ -18,7 +14,12 @@ function SingleLot (props) {
             <p>{status}</p>
 
             <br/>
-            <Button variant={"outline-info"} onClick={openForm}> $ </Button>
+            {
+                lot.occupied ?
+                    (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>$</Button>)
+                    :
+                    (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>+</Button>)
+            }
 
             <ReleaseVehicleForm show={showReleaseForm} handleClose={handleClose} lot={lot}></ReleaseVehicleForm>
         </div>

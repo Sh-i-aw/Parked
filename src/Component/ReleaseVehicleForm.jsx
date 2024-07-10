@@ -18,7 +18,7 @@ function ReleaseVehicleForm (props) {
           keyboard={false}
         >
             <Modal.Header closeButton>
-                <Modal.Title>H343{lot.plateNumber}</Modal.Title>
+                <Modal.Title>{lot.lotNumber}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
