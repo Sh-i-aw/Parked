@@ -16,7 +16,20 @@ function App() {
   const handleCloseForm = () => setShowForm(false);
 
   const registerVehicle = (parkedVehicle) => {
-      console.log(parkedVehicle);
+      const newLots = [...garage.lots];
+      newLots[parkedVehicle.lot - 1]  = {
+          ...newLots[parkedVehicle.lot - 1],
+          occupied: true,
+          plateNumber: parkedVehicle.plate,
+          timeParked: parkedVehicle.parkedTime,
+      };
+
+      const newGarage = {
+          ...garage,
+          lots: newLots,
+      };
+
+      setGarage(newGarage);
   }
 
   return (
@@ -27,7 +40,7 @@ function App() {
           }
           <Button variant={"outline-info"} size={"lg"} onClick={handleShowForm}>Accept Vehicle</Button>
 
-          <AcceptVehicleForm show={showForm} handleClose={handleCloseForm} lots={garage.lots}></AcceptVehicleForm>
+          <AcceptVehicleForm show={showForm} handleClose={handleCloseForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptVehicleForm>
       </>
   );
 }
