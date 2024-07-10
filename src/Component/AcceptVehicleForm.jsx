@@ -3,12 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form'
 import {useState} from "react";
 import '../App.css';
+import dayjs from "dayjs";
 
-function SingleLot (props) {
+function AcceptVehicleForm(props) {
     const {lots, show, handleClose, registerVehicle} = props;
     const [plateNumber, setPlateNumber] = useState('');
     const [selectedLot, setSelectedLot] = useState(null);
     const [invalid, setInvalid] = useState(false);
+
 
     const handlePlateNumberChange = (e) => setPlateNumber(e.target.value);
     const handleLotChange = (e) => {
@@ -27,7 +29,7 @@ function SingleLot (props) {
         let parkedVehicle = {
             lot: selectedLot,
             plate : plateNumber,
-            parkedTime: new Date(),
+            entryTime: dayjs(),
         }
         console.log(parkedVehicle);
         registerVehicle(parkedVehicle);
@@ -59,7 +61,7 @@ function SingleLot (props) {
                       <Form.Select onChange={handleLotChange} required>
                           <option defaultChecked={true} value={null}>Allocate lot to vehicle</option>
                           {
-                            lots.map ((lot, index) => <option disabled={lot.occupied} value={index + 1}>{index + 1}</option>)
+                            lots.map ((lot) => <option key={lot.lotNumber} disabled={lot.occupied} value={lot.lotNumber}>{lot.lotNumber}</option>)
                           }
                       </Form.Select>
                       {
@@ -81,4 +83,4 @@ function SingleLot (props) {
     )
 }
 
-export default SingleLot;
+export default AcceptVehicleForm;
