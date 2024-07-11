@@ -9,15 +9,12 @@ import {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button'
 
 
-
-
-
-
 function App() {
     const [garage, setGarage] = useState(new Garage());
     const [showAcceptForm, setShowAcceptForm] = useState(false);
     const [showReleaseForm, setShowReleaseForm] = useState(0);
     const [lotToFree, setLotToFree] = useState(0);
+
     const handleShowAcceptForm = () => setShowAcceptForm(true);
     const handleCloseAcceptForm = () => setShowAcceptForm(false);
     const handleCloseReleaseForm = () => setShowReleaseForm(0);
@@ -46,6 +43,7 @@ function App() {
 
     }, [lotToFree]);
 
+
   const registerVehicle = (parkedVehicle) => {
 
       const newLots = [...garage.lots];
@@ -65,6 +63,7 @@ function App() {
       setGarage(newGarage);
   }
 
+   console.log(garage.isFull)
   return (
       <>
           <h3>Garage Status</h3>
@@ -81,7 +80,12 @@ function App() {
               })
           }
 
-          <Button variant={"outline-info"} size={"lg"} onClick={handleShowAcceptForm}>Accept Vehicle</Button>
+          <Button variant={"outline-info"} size={"lg"}
+                  onClick={handleShowAcceptForm}
+                  disabled={garage.isFull}
+          >
+              Accept Vehicle
+          </Button>
           <AcceptVehicleForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptVehicleForm>
       </>
   );
