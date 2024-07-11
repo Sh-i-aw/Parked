@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {Garage} from './Component/Lot'
+import {Garage} from './Component/Garage'
 import SingleLot from "./Component/SingleLot";
 import AcceptInGarageForm from "./Component/AcceptInGarageForm";
 
@@ -40,7 +40,7 @@ function App() {
         }
 
         setGarage(newGarage);
-
+        setLotToFree(0);
     }, [lotToFree]);
 
 
@@ -65,9 +65,12 @@ function App() {
 
   return (
       <>
-          <h3>Garage Status</h3>
-          <h3>Occupancy: {garage.occupancy}</h3>
-          <h3>IsFull: {garage.isFull ? 'yup' : 'nah-uh'}</h3>
+          <nav className={"status-bar"}>
+              <h3>Garage Status</h3>
+              <label>Occupancy: {garage.occupancy}</label>
+              <label>IsFull: {garage.isFull ? 'yup' : 'nah-uh'}</label>
+          </nav>
+
           {
               garage.lots.map((lot) => {
                   return <SingleLot key={lot.lotNumber}
@@ -75,6 +78,10 @@ function App() {
                                     openReleaseForm={lotToRelease => setShowReleaseForm(lotToRelease)}
                                     closeReleaseForm={handleCloseReleaseForm}
                                     releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
+
+                                    shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
+                                    openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
+                                    closeAcceptForm={handleCloseAcceptForm}
                                     lot={lot}/>
               })
           }
