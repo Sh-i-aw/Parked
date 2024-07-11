@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import ReleaseVehicleForm from "./ReleaseVehicleForm";
 import dayjs from "dayjs";
 import {useEffect, useState} from "react";
+import AcceptVehicleForm from "./AcceptVehicleForm";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 const duration = require('dayjs/plugin/duration');
@@ -14,9 +15,12 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 function SingleLot (props) {
-    const {shouldShowReleaseForm, lot, openReleaseForm, closeReleaseForm, releaseVehicle} = props
+    const {shouldShowReleaseForm, openReleaseForm, closeReleaseForm, releaseVehicle,
+            lot,
+            shouldShowAcceptForm, closeAcceptForm
+            } = props
 
-    const [timeElapsed, setTimeElapsed] = useState(dayjs().diff(lot.entryTime, 'second'));
+    const [timeElapsed, setTimeElapsed] = useState(0);
 
     useEffect(() => {
         if (shouldShowReleaseForm){
@@ -42,8 +46,8 @@ function SingleLot (props) {
             <h2>{lot.lotNumber}</h2>
             <p>{status}</p>
             <p>{lot.plateNumber}</p>
-            {lot.entryTime && <p>{dayjs(lot.entryTime).tz("America/Toronto").format('YYYY-MM-DD HH:mm:ss')}</p>}
-            {lot.occupied && <p>{lot.duration}</p>}
+            {lot.occupied && <p>{dayjs(lot.entryTime).tz("America/Toronto").format('YYYY-MM-DD HH:mm:ss')}</p>}
+            {timeElapsed > 0 && <p>{lot.duration}</p>}
 
             <br/>
             {
@@ -58,7 +62,14 @@ function SingleLot (props) {
                 show={shouldShowReleaseForm}
                 closeForm={closeReleaseForm}
                 acceptAndRelease ={() => releaseVehicle(lot.lotNumber)}
-                lot={lot}></ReleaseVehicleForm>
+                lot={lot}>
+            </ReleaseVehicleForm>
+
+            <AcceptVehicleForm>
+                show={shouldShowAcceptForm}
+                closeForm={closeAcceptForm}
+                lot={lot.lotNumber}
+            </AcceptVehicleForm>
         </div>
     )
 }

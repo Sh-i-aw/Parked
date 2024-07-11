@@ -11,12 +11,12 @@ import {Container, Row, Col, Button} from "react-bootstrap";
 
 function App() {
     const [garage, setGarage] = useState(new Garage());
-    const [showAcceptForm, setShowAcceptForm] = useState(false);
+    const [showAcceptInGarageForm, setShowAcceptInGarageForm] = useState(false);
     const [showReleaseForm, setShowReleaseForm] = useState(0);
     const [lotToFree, setLotToFree] = useState(0);
 
-    const handleShowAcceptForm = () => setShowAcceptForm(true);
-    const handleCloseAcceptForm = () => setShowAcceptForm(false);
+    const handleShowAcceptForm = () => setShowAcceptInGarageForm(true);
+    const handleCloseAcceptForm = () => setShowAcceptInGarageForm(false);
     const handleCloseReleaseForm = () => setShowReleaseForm(0);
 
 
@@ -86,15 +86,15 @@ function App() {
                                             closeReleaseForm={handleCloseReleaseForm}
                                             releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
 
-                                            shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
-                                            openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
+                                            shouldShowAcceptForm={showAcceptInGarageForm === lot.lotNumber}
+                                            openAcceptForm={lotToAccept => setShowAcceptInGarageForm(lotToAccept)}
                                             closeAcceptForm={handleCloseAcceptForm}
                                             lot={lot}/>
                       })
                   }
 
 
-                  <AcceptInGarageForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots}
+                  <AcceptInGarageForm show={showAcceptInGarageForm} handleClose={handleCloseAcceptForm} lots={garage.lots}
                                       registerVehicle={registerVehicle}></AcceptInGarageForm>
 
               </Col>
