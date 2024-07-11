@@ -14,12 +14,12 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 function SingleLot (props) {
-    const {shouldShowForm, lot, openForm, closeForm, releaseVehicle} = props
+    const {shouldShowReleaseForm, lot, openReleaseForm, closeReleaseForm, releaseVehicle} = props
 
     const [timeElapsed, setTimeElapsed] = useState(dayjs().diff(lot.entryTime, 'second'));
 
     useEffect(() => {
-        if (shouldShowForm){
+        if (shouldShowReleaseForm){
             return;
         }
         const interval = setInterval(() => {
@@ -27,7 +27,7 @@ function SingleLot (props) {
         }, 1000)
 
         return () => clearInterval(interval);
-    }, [lot.entryTime, shouldShowForm]);
+    }, [lot.entryTime, shouldShowReleaseForm]);
 
     let status = lot.occupied ? "Not Empty" : "Empty";
 
@@ -48,14 +48,15 @@ function SingleLot (props) {
             <br/>
             {
                 lot.occupied ?
-                    (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>$</Button>)
+                    (<Button variant={"outline-info"} onClick={() => openReleaseForm(lot.lotNumber)}>$</Button>)
                     :
-                    (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>+</Button>)
+                    <Button>ACCEPT</Button>
+                    // (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>+</Button>)
             }
 
             <ReleaseVehicleForm
-                show={shouldShowForm}
-                closeForm={closeForm}
+                show={shouldShowReleaseForm}
+                closeForm={closeReleaseForm}
                 acceptAndRelease ={() => releaseVehicle(lot.lotNumber)}
                 lot={lot}></ReleaseVehicleForm>
         </div>

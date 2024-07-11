@@ -5,7 +5,7 @@ import {useState} from "react";
 import '../App.css';
 import dayjs from "dayjs";
 
-function AcceptVehicleForm(props) {
+function AcceptInGarageForm(props) {
     const {lots, show, handleClose, registerVehicle} = props;
     const [plateNumber, setPlateNumber] = useState('');
     const [selectedLot, setSelectedLot] = useState(null);
@@ -83,4 +83,4 @@ function AcceptVehicleForm(props) {
     )
 }
 
-export default AcceptVehicleForm;
+export default AcceptInGarageForm;

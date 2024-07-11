@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Garage} from './Component/Lot'
 import SingleLot from "./Component/SingleLot";
-import AcceptVehicleForm from "./Component/AcceptVehicleForm";
+import AcceptInGarageForm from "./Component/AcceptInGarageForm";
 
 import {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button'
@@ -58,12 +58,11 @@ function App() {
           ...garage,
           lots: newLots,
           occupancy: garage.occupancy + 1,
-          isFull: garage.occupancy + 1 === 3,
+          isFull: garage.occupancy + 1 === garage.capacity,
       };
       setGarage(newGarage);
   }
 
-   console.log(garage.isFull)
   return (
       <>
           <h3>Garage Status</h3>
@@ -72,9 +71,9 @@ function App() {
           {
               garage.lots.map((lot) => {
                   return <SingleLot key={lot.lotNumber}
-                                    shouldShowForm={showReleaseForm === lot.lotNumber}
-                                    openForm={lotToRelease => setShowReleaseForm(lotToRelease)}
-                                    closeForm={handleCloseReleaseForm}
+                                    shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
+                                    openReleaseForm={lotToRelease => setShowReleaseForm(lotToRelease)}
+                                    closeReleaseForm={handleCloseReleaseForm}
                                     releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
                                     lot={lot}/>
               })
@@ -86,7 +85,7 @@ function App() {
           >
               Accept Vehicle
           </Button>
-          <AcceptVehicleForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptVehicleForm>
+          <AcceptInGarageForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptInGarageForm>
       </>
   );
 }
