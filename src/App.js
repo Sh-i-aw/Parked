@@ -6,7 +6,7 @@ import SingleLot from "./Component/SingleLot";
 import AcceptInGarageForm from "./Component/AcceptInGarageForm";
 
 import {useEffect, useState} from "react";
-import Button from 'react-bootstrap/Button'
+import {Container, Row, Col, Button} from "react-bootstrap";
 
 
 function App() {
@@ -64,36 +64,43 @@ function App() {
   }
 
   return (
-      <>
-          <nav className={"status-bar"}>
-              <h3>Garage Status</h3>
-              <label>Occupancy: {garage.occupancy}</label>
-              <label>IsFull: {garage.isFull ? 'yup' : 'nah-uh'}</label>
-          </nav>
+      <Container fluid>
+          <Row className="vh-100">
+              <Col sm={2} className="navColumn">
+                      <h3>Garage Status</h3>
+                      <p>Occupancy: {garage.occupancy}</p>
+                      <p>IsFull: {garage.isFull ? 'yup' : 'nah-uh'}</p>
+                  <Button variant={"outline-info"} size={"lg"}
+                          onClick={handleShowAcceptForm}
+                          disabled={garage.isFull}
+                  >
+                      Accept Vehicle
+                  </Button>
+              </Col>
+              <Col>
+                  {
+                      garage.lots.map((lot) => {
+                          return <SingleLot key={lot.lotNumber}
+                                            shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
+                                            openReleaseForm={lotToRelease => setShowReleaseForm(lotToRelease)}
+                                            closeReleaseForm={handleCloseReleaseForm}
+                                            releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
 
-          {
-              garage.lots.map((lot) => {
-                  return <SingleLot key={lot.lotNumber}
-                                    shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
-                                    openReleaseForm={lotToRelease => setShowReleaseForm(lotToRelease)}
-                                    closeReleaseForm={handleCloseReleaseForm}
-                                    releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
+                                            shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
+                                            openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
+                                            closeAcceptForm={handleCloseAcceptForm}
+                                            lot={lot}/>
+                      })
+                  }
 
-                                    shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
-                                    openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
-                                    closeAcceptForm={handleCloseAcceptForm}
-                                    lot={lot}/>
-              })
-          }
 
-          <Button variant={"outline-info"} size={"lg"}
-                  onClick={handleShowAcceptForm}
-                  disabled={garage.isFull}
-          >
-              Accept Vehicle
-          </Button>
-          <AcceptInGarageForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots} registerVehicle={registerVehicle}></AcceptInGarageForm>
-      </>
+                  <AcceptInGarageForm show={showAcceptForm} handleClose={handleCloseAcceptForm} lots={garage.lots}
+                                      registerVehicle={registerVehicle}></AcceptInGarageForm>
+
+              </Col>
+          </Row>
+      </Container>
+
   );
 }
 
