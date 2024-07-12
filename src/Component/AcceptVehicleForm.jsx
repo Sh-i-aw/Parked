@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import {useState} from "react";
 import {Lot} from "./Lot";
 import dayjs from "dayjs";
+import React from 'react';
 
 function AcceptVehicleForm (props) {
     const {show, lotNumber, closeForm, submitRegistration} = props;
