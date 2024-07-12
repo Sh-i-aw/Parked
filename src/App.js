@@ -53,6 +53,9 @@ function App() {
 
 
     const registerVehicleInGarage = (newVehicle) => {
+        if (!newVehicle){
+            return;
+        }
         const newLots = [...garage.lots];
 
         newLots[newVehicle.lotNumber - 1] = newVehicle;
