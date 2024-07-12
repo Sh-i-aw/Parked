@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import '../App.css';
+import React from 'react';
 
 function ReleaseVehicleForm (props) {
     const {lot, show, closeForm, acceptAndRelease} = props;
