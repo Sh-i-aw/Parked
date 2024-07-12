@@ -8,8 +8,8 @@ import {Lot} from "./Lot";
 
 function AcceptInGarageForm(props) {
     const {lots, show, handleClose, submitRegistration} = props;
-    const [plateNumber, setPlateNumber] = useState('');
-    const [selectedLot, setSelectedLot] = useState(null);
+    const [plateNumber, setPlateNumber] = useState("");
+    const [selectedLot, setSelectedLot] = useState("");
     const [invalid, setInvalid] = useState(false);
 
 
@@ -21,10 +21,15 @@ function AcceptInGarageForm(props) {
         setSelectedLot(e.target.value)
     };
 
+    const cancelRegistration = () => {
+        setInvalid(false);
+        handleClose();
+    }
+
     const createNewRegistration = () => {
-        if (!selectedLot) {
+        if (selectedLot === "") {
             setInvalid(true);
-            return;
+            return null;
         }
 
         setPlateNumber("");
@@ -47,7 +52,7 @@ function AcceptInGarageForm(props) {
           backdrop={"static"}
           keyboard={false}
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
               <Modal.Title>Register a vehicle</Modal.Title>
             </Modal.Header>
 
@@ -55,23 +60,24 @@ function AcceptInGarageForm(props) {
                 <Form>
                   <Form.Group>
                       <Form.Label>License Plate</Form.Label>
-                      <Form.Control type="text" onChange={handlePlateNumberChange} placeholder={"Enter license plate"}/>
+                      <Form.Control type="text"
+                                    onChange={handlePlateNumberChange}
+                                    placeholder={"Enter license plate"}
+                      />
                   </Form.Group>
                   <Form.Group className={"mt-4"}>
                       <Form.Select onChange={handleLotChange} required>
-                          <option defaultChecked={true} value={null}>Allocate lot to vehicle</option>
+                          <option defaultChecked={true}>Allocate lot to vehicle</option>
                           {
                             lots.map ((lot) => <option key={lot.lotNumber} disabled={lot.occupied} value={lot.lotNumber}>{lot.lotNumber}</option>)
                           }
                       </Form.Select>
-                      {
-                          invalid && <Form.Text> Must select a valid lot ! </Form.Text>
-                      }
+                      { invalid && <p> Must select a valid lot ! </p> }
                   </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={"light"} onClick={handleClose}>
+                <Button variant={"light"} onClick={cancelRegistration}>
                     Cancel
                 </Button>
                 <Button variant={"info"} onClick={() => submitRegistration(createNewRegistration())}>
