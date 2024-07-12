@@ -16,9 +16,8 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 function SingleLot (props) {
-    const {shouldShowReleaseForm, openReleaseForm, closeReleaseForm, releaseVehicle,
-            lot,
-            shouldShowAcceptForm, openAcceptForm, closeAcceptForm
+    const {  shouldShowReleaseForm, openReleaseForm, closeReleaseForm, releaseVehicle,
+             shouldShowAcceptForm, openAcceptForm, closeAcceptForm, lot
             } = props
 
     const [timeElapsed, setTimeElapsed] = useState(0);
@@ -69,7 +68,7 @@ function SingleLot (props) {
             <AcceptVehicleForm
                 show={shouldShowAcceptForm}
                 closeForm={closeAcceptForm}
-                lot={lot.lotNumber}
+                lotNumber={lot.lotNumber}
             >
             </AcceptVehicleForm>
         </div>
