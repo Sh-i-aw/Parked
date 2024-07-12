@@ -17,6 +17,7 @@ function App() {
     const [lotToFree, setLotToFree] = useState(0);
 
     const handleShowAcceptForm = () => setShowAcceptInGarageForm(true);
+    const handleCloseAcceptInGarageForm = () => setShowAcceptInGarageForm(false);
     const handleCloseAcceptForm = () => setShowAcceptForm(0);
     const handleCloseReleaseForm = () => setShowReleaseForm(0);
 
@@ -96,8 +97,13 @@ function App() {
                   }
 
 
-                  <AcceptInGarageForm show={showAcceptInGarageForm} handleClose={handleCloseAcceptForm} lots={garage.lots}
-                                      registerVehicle={registerVehicle}></AcceptInGarageForm>
+                  <AcceptInGarageForm show={showAcceptInGarageForm}
+                                      handleClose={handleCloseAcceptInGarageForm}
+                                      lots={garage.lots}
+                                      registerVehicle={registerVehicle}
+                  >
+
+                  </AcceptInGarageForm>
 
               </Col>
           </Row>

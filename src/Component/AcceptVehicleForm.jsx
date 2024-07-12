@@ -36,7 +36,10 @@ function AcceptVehicleForm (props) {
                 <Form>
                     <Form.Group>
                         <Form.Label>License Plate</Form.Label>
-                        <Form.Control type="text" onChange={handlePlateNumberChange} placeholder={"Enter license plate"}/>
+                        <Form.Control type="text"
+                                      onChange={handlePlateNumberChange}
+                                      placeholder={"Enter license plate"}
+                        />
                     </Form.Group>
                 </Form>
             </Modal.Body>

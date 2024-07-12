@@ -53,9 +53,9 @@ function SingleLot (props) {
             <br/>
             {
                 lot.occupied ?
-                    (<Button variant={"outline-info"} onClick={() => openReleaseForm(lot.lotNumber)}>$</Button>)
+                    (<Button variant={"info"} onClick={() => openReleaseForm(lot.lotNumber)}>$</Button>)
                     :
-                    <Button onClick={() => openAcceptForm(lot.lotNumber)}>ACCEPT</Button>
+                    <Button variant={"info"} onClick={() => openAcceptForm(lot.lotNumber)}>+</Button>
             }
 
             <ReleaseVehicleForm
