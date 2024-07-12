@@ -13,10 +13,11 @@ function App() {
     const [garage, setGarage] = useState(new Garage());
     const [showAcceptInGarageForm, setShowAcceptInGarageForm] = useState(false);
     const [showReleaseForm, setShowReleaseForm] = useState(0);
+    const [showAcceptForm, setShowAcceptForm] =useState(0);
     const [lotToFree, setLotToFree] = useState(0);
 
     const handleShowAcceptForm = () => setShowAcceptInGarageForm(true);
-    const handleCloseAcceptForm = () => setShowAcceptInGarageForm(false);
+    const handleCloseAcceptForm = () => setShowAcceptForm(0);
     const handleCloseReleaseForm = () => setShowReleaseForm(0);
 
 
@@ -78,6 +79,7 @@ function App() {
                   </Button>
               </Col>
               <Col>
+
                   {
                       garage.lots.map((lot) => {
                           return <SingleLot key={lot.lotNumber}
@@ -86,8 +88,8 @@ function App() {
                                             closeReleaseForm={handleCloseReleaseForm}
                                             releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
 
-                                            shouldShowAcceptForm={showAcceptInGarageForm === lot.lotNumber}
-                                            openAcceptForm={lotToAccept => setShowAcceptInGarageForm(lotToAccept)}
+                                            shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
+                                            openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
                                             closeAcceptForm={handleCloseAcceptForm}
                                             lot={lot}/>
                       })
