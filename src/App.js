@@ -45,6 +45,19 @@ function App() {
         setLotToFree(0);
     }, [lotToFree]);
 
+    const registerOne = (newVehicle) => {
+        const newLots = [...garage.lots];
+
+        newLots[newVehicle.lotNumber - 1] = newVehicle;
+
+        const newGarage = {
+            ...garage,
+            lots: newLots,
+            occupancy: garage.occupancy + 1,
+            isFull: garage.occupancy + 1 === garage.capacity,
+        }
+        setGarage(newGarage);
+    }
 
   const registerVehicle = (parkedVehicle) => {
 
@@ -92,6 +105,7 @@ function App() {
                                             shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
                                             openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
                                             closeAcceptForm={handleCloseAcceptForm}
+                                            registerVehicle={(vehicle) => registerOne(vehicle)}
                                             lot={lot}/>
                       })
                   }

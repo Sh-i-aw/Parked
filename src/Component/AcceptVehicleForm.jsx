@@ -6,12 +6,13 @@ import {Lot} from "./Lot";
 import dayjs from "dayjs";
 
 function AcceptVehicleForm (props) {
-    const {show, lotNumber, closeForm} = props;
+    const {show, lotNumber, closeForm, submitRegistration} = props;
 
     const [plateNumber, setPlateNumber] = useState('');
     const handlePlateNumberChange = (e) => setPlateNumber(e.target.value);
 
-    const submitRegistration = () => {
+    const createNewRegistration = () => {
+        closeForm();
         return new Lot (
                 lotNumber,
                 true,
@@ -47,7 +48,7 @@ function AcceptVehicleForm (props) {
                 <Button variant={"light"} onClick={closeForm}>
                     Cancel
                 </Button>
-                <Button variant={"info"} onClick={submitRegistration}>
+                <Button variant={"info"} onClick={() =>submitRegistration(createNewRegistration())}>
                     Register
                 </Button>
             </Modal.Footer>
