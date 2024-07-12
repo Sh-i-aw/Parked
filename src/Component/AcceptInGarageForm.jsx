@@ -4,9 +4,10 @@ import Form from 'react-bootstrap/Form'
 import {useState} from "react";
 import '../App.css';
 import dayjs from "dayjs";
+import {Lot} from "./Lot";
 
 function AcceptInGarageForm(props) {
-    const {lots, show, handleClose, registerVehicle} = props;
+    const {lots, show, handleClose, submitRegistration} = props;
     const [plateNumber, setPlateNumber] = useState('');
     const [selectedLot, setSelectedLot] = useState(null);
     const [invalid, setInvalid] = useState(false);
@@ -20,24 +21,23 @@ function AcceptInGarageForm(props) {
         setSelectedLot(e.target.value)
     };
 
-    const submitRegistration = () => {
+    const createNewRegistration = () => {
         if (!selectedLot) {
             setInvalid(true);
             return;
         }
 
-        let parkedVehicle = {
-            lot: selectedLot,
-            plate : plateNumber,
-            entryTime: dayjs(),
-        }
-        console.log(parkedVehicle);
-        registerVehicle(parkedVehicle);
-
         setPlateNumber("");
         setSelectedLot("");
         setInvalid(false);
         handleClose();
+
+        return new Lot (
+            selectedLot,
+            true,
+            plateNumber,
+            dayjs()
+        );
     }
 
     return (
@@ -74,7 +74,7 @@ function AcceptInGarageForm(props) {
                 <Button variant={"light"} onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button variant={"info"} onClick={submitRegistration}>
+                <Button variant={"info"} onClick={() => submitRegistration(createNewRegistration())}>
                     Register
                 </Button>
             </Modal.Footer>
