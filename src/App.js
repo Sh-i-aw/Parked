@@ -24,7 +24,13 @@ function App() {
 
     useEffect(() => {
         if (lotToFree === 0) return;
+
+        releaseVehicleFromGarage();
+    }, [lotToFree]);
+
+    const releaseVehicleFromGarage = () => {
         const newLots = [...garage.lots];
+
         newLots[lotToFree - 1] = {
             ...newLots[lotToFree - 1],
             occupied: false,
@@ -43,9 +49,10 @@ function App() {
 
         setGarage(newGarage);
         setLotToFree(0);
-    }, [lotToFree]);
+    }
 
-    const registerOne = (newVehicle) => {
+
+    const registerVehicleInGarage = (newVehicle) => {
         const newLots = [...garage.lots];
 
         newLots[newVehicle.lotNumber - 1] = newVehicle;
@@ -59,24 +66,6 @@ function App() {
         setGarage(newGarage);
     }
 
-  const registerVehicle = (parkedVehicle) => {
-
-      const newLots = [...garage.lots];
-      newLots[parkedVehicle.lot - 1]  = {
-          ...newLots[parkedVehicle.lot - 1],
-          occupied: true,
-          plateNumber: parkedVehicle.plate,
-          entryTime: parkedVehicle.entryTime,
-      };
-      console.log(garage.occupancy);
-      const newGarage = {
-          ...garage,
-          lots: newLots,
-          occupancy: garage.occupancy + 1,
-          isFull: garage.occupancy + 1 === garage.capacity,
-      };
-      setGarage(newGarage);
-  }
 
   return (
       <Container fluid>
@@ -105,7 +94,7 @@ function App() {
                                             shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
                                             openAcceptForm={lotToAccept => setShowAcceptForm(lotToAccept)}
                                             closeAcceptForm={handleCloseAcceptForm}
-                                            registerVehicle={(vehicle) => registerOne(vehicle)}
+                                            registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
                                             lot={lot}/>
                       })
                   }
@@ -114,10 +103,8 @@ function App() {
                   <AcceptInGarageForm show={showAcceptInGarageForm}
                                       handleClose={handleCloseAcceptInGarageForm}
                                       lots={garage.lots}
-                                      registerVehicle={registerVehicle}
-                  >
-
-                  </AcceptInGarageForm>
+                                      submitRegistration={(vehicle) => registerVehicleInGarage(vehicle)}
+                  />
 
               </Col>
           </Row>
