@@ -1,7 +1,9 @@
 import Button from "react-bootstrap/Button";
 import ReleaseVehicleForm from "./ReleaseVehicleForm";
+import AcceptVehicleForm from "./AcceptVehicleForm";
 import dayjs from "dayjs";
 import {useEffect, useState} from "react";
+
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 const duration = require('dayjs/plugin/duration');
@@ -14,12 +16,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 function SingleLot (props) {
-    const {shouldShowForm, lot, openForm, closeForm, releaseVehicle} = props
+    const {  shouldShowReleaseForm, openReleaseForm, closeReleaseForm, releaseVehicle,
+             shouldShowAcceptForm, openAcceptForm, closeAcceptForm, registerVehicle,
+             lot
+            } = props
 
-    const [timeElapsed, setTimeElapsed] = useState(dayjs().diff(lot.entryTime, 'second'));
+    const [timeElapsed, setTimeElapsed] = useState(0);
 
     useEffect(() => {
-        if (shouldShowForm){
+        if (shouldShowReleaseForm){
             return;
         }
         const interval = setInterval(() => {
@@ -27,7 +32,7 @@ function SingleLot (props) {
         }, 1000)
 
         return () => clearInterval(interval);
-    }, [lot.entryTime, shouldShowForm]);
+    }, [lot.entryTime, shouldShowReleaseForm]);
 
     let status = lot.occupied ? "Not Empty" : "Empty";
 
@@ -42,22 +47,32 @@ function SingleLot (props) {
             <h2>{lot.lotNumber}</h2>
             <p>{status}</p>
             <p>{lot.plateNumber}</p>
-            {lot.entryTime && <p>{dayjs(lot.entryTime).tz("America/Toronto").format('YYYY-MM-DD HH:mm:ss')}</p>}
-            {lot.occupied && <p>{lot.duration}</p>}
+            {lot.occupied && <p>{dayjs(lot.entryTime).tz("America/Toronto").format('YYYY-MM-DD HH:mm:ss')}</p>}
+            {timeElapsed > 0 && <p>{lot.duration}</p>}
 
             <br/>
             {
                 lot.occupied ?
-                    (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>$</Button>)
+                    (<Button variant={"info"} onClick={() => openReleaseForm(lot.lotNumber)}>$</Button>)
                     :
-                    (<Button variant={"outline-info"} onClick={() => openForm(lot.lotNumber)}>+</Button>)
+                    <Button variant={"info"} onClick={() => openAcceptForm(lot.lotNumber)}>+</Button>
             }
 
             <ReleaseVehicleForm
-                show={shouldShowForm}
-                closeForm={closeForm}
+                show={shouldShowReleaseForm}
+                closeForm={closeReleaseForm}
                 acceptAndRelease ={() => releaseVehicle(lot.lotNumber)}
-                lot={lot}></ReleaseVehicleForm>
+                lot={lot}
+            >
+            </ReleaseVehicleForm>
+
+            <AcceptVehicleForm
+                show={shouldShowAcceptForm}
+                closeForm={closeAcceptForm}
+                lotNumber={lot.lotNumber}
+                submitRegistration={(newVehicle) => registerVehicle(newVehicle)}
+            >
+            </AcceptVehicleForm>
         </div>
     )
 }

@@ -9,14 +9,4 @@ class Lot {
     }
 }
 
-class Garage {
-    constructor(numberOfLots = 3) {
-        this.isFull = false;
-        this.occupancy = 0;
-        this.lots = Array.from({length:numberOfLots}, (_, index) =>  {
-            return new Lot(index + 1)
-        });
-    }
-}
-
-export {Lot, Garage};
+export {Lot};
