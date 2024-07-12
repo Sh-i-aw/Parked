@@ -1,13 +1,15 @@
+.navColumn {
+  min-width: 250px;
+  padding: 20px;
+}
+
 .App {
   text-align: center;
+  margin: 1rem;
 }
 
 .selectMsg {
   color: dodgerblue;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
