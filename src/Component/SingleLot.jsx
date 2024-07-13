@@ -50,7 +50,7 @@ function SingleLot(props) {
 	lot.totalCharge = segment > 4 ? 2 : segment;
 
 	return (
-		<div>
+		<div className={"lotTile"}>
 			<h2>{lot.lotNumber}</h2>
 			<p>{status}</p>
 			<p>{lot.plateNumber}</p>

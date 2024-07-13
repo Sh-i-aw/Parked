@@ -3,6 +3,16 @@
   padding: 20px;
 }
 
+.lotTile{
+  display:inline-block;
+  margin: 20px;
+  padding: 20px;
+  min-width: 200px;
+  min-height: 450px;
+  border: 2px double lightblue;
+  border-radius: 1rem;
+}
+
 .App {
   text-align: center;
   margin: 1rem;
