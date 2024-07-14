@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import ReleaseVehicleForm from "./ReleaseVehicleForm";
 import AcceptVehicleForm from "./AcceptVehicleForm";
 import dayjs from "dayjs";
@@ -57,7 +56,7 @@ function SingleLot(props) {
 					<br />
 					<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
 					<br />
-					<p>{lot.duration}</p>
+					{timeElapsed > 0 && <p>{lot.duration}</p>}
 				</div>
 			)}
 
@@ -68,13 +67,6 @@ function SingleLot(props) {
 					<button onClick={() => openAcceptForm(lot.lotNumber)}>+</button>
 				)}
 			</div>
-			{/*{timeElapsed > 0 && <p>{lot.duration}</p>}*/}
-
-			{/*{lot.occupied ? (*/}
-			{/*	<button onClick={() => openReleaseForm(lot.lotNumber)}>$</button>*/}
-			{/*) : (*/}
-			{/*	<button onClick={() => openAcceptForm(lot.lotNumber)}>+</button>*/}
-			{/*)}*/}
 
 			<ReleaseVehicleForm
 				show={shouldShowReleaseForm}
