@@ -3,6 +3,7 @@ import AcceptVehicleForm from "./AcceptVehicleForm";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import React from "react";
+import { ReactComponent as Vroom } from "../svg/vroom.svg";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 const duration = require("dayjs/plugin/duration");
@@ -52,18 +53,13 @@ function SingleLot(props) {
 
 			{lot.occupied && (
 				<div className={"lotDetails"}>
+					<Vroom class={"carIcon"}></Vroom>
 					<p>{lot.plateNumber}</p>
 					<br />
 					<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
 					<br />
-					{timeElapsed > 0 ? (
-						<>
-							<p>{lot.duration}</p>
-							<p>$ {lot.totalCharge}</p>
-						</>
-					) : (
-						"  "
-					)}
+					<p>{timeElapsed > 0 ? lot.duration : "loading..."}</p>
+					<p>$ {lot.totalCharge ? lot.totalCharge : 0}</p>
 				</div>
 			)}
 

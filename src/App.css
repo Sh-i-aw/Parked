@@ -32,6 +32,14 @@
 .lotDetails {
   height: 65%;
   align-content: center;
+  display: grid;
+}
+
+.carIcon {
+  width: 100px;
+  height: 100px;
+  justify-self: center;
+  fill: dimgray;
 }
 
 .lotBtn {
