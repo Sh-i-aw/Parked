@@ -1,16 +1,62 @@
+.body{
+  margin: 0;
+}
+
 .navColumn {
+  background-color: rgba(240,240,240,0.5);
   min-width: 250px;
   padding: 20px;
 }
 
 .lotTile{
-  display:inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   margin: 20px;
   padding: 20px;
-  min-width: 200px;
+  min-width: 225px;
   min-height: 450px;
   border: 2px double lightblue;
   border-radius: 1rem;
+}
+
+.lotHeader {
+  justify-self: flex-start;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.lotDetails {
+  flex-grow: 1;
+}
+
+.lotBtn {
+  flex-grow: 1;
+  display: grid;
+  align-content: center;
+  padding-bottom: 20px;
+}
+
+.lotTile button {
+  justify-self: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 40%;
+  background-color: lightblue;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lotTile button:hover,
+.lotTile button:focus{
+  background-color: darkcyan;
+  font-weight: bolder;
 }
 
 .App {
