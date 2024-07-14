@@ -56,15 +56,38 @@ function SingleLot(props) {
 					<br />
 					<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
 					<br />
-					{timeElapsed > 0 && <p>{lot.duration}</p>}
+					{timeElapsed > 0 ? (
+						<>
+							<p>{lot.duration}</p>
+							<p>$ {lot.totalCharge}</p>
+						</>
+					) : (
+						"  "
+					)}
 				</div>
 			)}
 
 			<div className={"lotBtn"}>
 				{lot.occupied ? (
-					<button onClick={() => openReleaseForm(lot.lotNumber)}>$</button>
+					<button
+						className={"lotButton"}
+						onClick={(e) => {
+							e.target.blur();
+							return openReleaseForm(lot.lotNumber);
+						}}
+					>
+						$
+					</button>
 				) : (
-					<button onClick={() => openAcceptForm(lot.lotNumber)}>+</button>
+					<button
+						className={"lotButton"}
+						onClick={(e) => {
+							e.target.blur();
+							return openAcceptForm(lot.lotNumber);
+						}}
+					>
+						+
+					</button>
 				)}
 			</div>
 

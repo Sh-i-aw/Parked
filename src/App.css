@@ -15,8 +15,8 @@
   justify-content: space-between;
   margin: 20px;
   padding: 20px;
-  min-width: 200px;
-  min-height: 400px;
+  min-width: 220px;
+  min-height: 440px;
   border: 2px double lightblue;
   border-radius: 1rem;
 }
@@ -30,7 +30,8 @@
 }
 
 .lotDetails {
-  flex-grow: 1;
+  height: 65%;
+  align-content: center;
 }
 
 .lotBtn {
