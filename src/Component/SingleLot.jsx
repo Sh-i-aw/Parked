@@ -41,8 +41,6 @@ function SingleLot(props) {
 		return () => clearInterval(interval);
 	}, [lot.entryTime, shouldShowReleaseForm]);
 
-	let status = lot.occupied ? "Not Empty" : "Empty";
-
 	// const timeElapsed = dayjs().diff(lot.entryTime, 'second');
 	lot.duration = dayjs.duration(timeElapsed, "seconds").format("m[min] s[seconds]");
 
@@ -51,24 +49,32 @@ function SingleLot(props) {
 
 	return (
 		<div className={"lotTile"}>
-			<h2>{lot.lotNumber}</h2>
-			<p>{status}</p>
-			<p>{lot.plateNumber}</p>
-			{lot.occupied && (
-				<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
-			)}
-			{timeElapsed > 0 && <p>{lot.duration}</p>}
+			<div className={"lotHeader"}>A0{lot.lotNumber}</div>
 
-			<br />
-			{lot.occupied ? (
-				<Button variant={"info"} onClick={() => openReleaseForm(lot.lotNumber)}>
-					$
-				</Button>
-			) : (
-				<Button variant={"info"} onClick={() => openAcceptForm(lot.lotNumber)}>
-					+
-				</Button>
+			{lot.occupied && (
+				<div className={"lotDetails"}>
+					<p>{lot.plateNumber}</p>
+					<br />
+					<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
+					<br />
+					<p>{lot.duration}</p>
+				</div>
 			)}
+
+			<div className={"lotBtn"}>
+				{lot.occupied ? (
+					<button onClick={() => openReleaseForm(lot.lotNumber)}>$</button>
+				) : (
+					<button onClick={() => openAcceptForm(lot.lotNumber)}>+</button>
+				)}
+			</div>
+			{/*{timeElapsed > 0 && <p>{lot.duration}</p>}*/}
+
+			{/*{lot.occupied ? (*/}
+			{/*	<button onClick={() => openReleaseForm(lot.lotNumber)}>$</button>*/}
+			{/*) : (*/}
+			{/*	<button onClick={() => openAcceptForm(lot.lotNumber)}>+</button>*/}
+			{/*)}*/}
 
 			<ReleaseVehicleForm
 				show={shouldShowReleaseForm}
