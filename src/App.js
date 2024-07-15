@@ -68,50 +68,47 @@ function App() {
 	};
 
 	return (
-		<Container fluid>
-			<Row className="vh-100">
-				<Col sm={2} className="navColumn">
-					<h3>Garage Status</h3>
-					<p>Occupancy: {garage.occupancy}</p>
-					<p>IsFull: {garage.isFull ? "yup" : "nah-uh"}</p>
-					<Button
-						variant={"outline-info"}
-						size={"lg"}
-						onClick={handleShowAcceptForm}
-						disabled={garage.isFull}
-					>
-						Accept Vehicle
-					</Button>
-				</Col>
-				<Col>
-					<div className={"lotArea"}>
-						{garage.lots.map((lot) => {
-							return (
-								<SingleLot
-									key={lot.lotNumber}
-									shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
-									openReleaseForm={(lotToRelease) => setShowReleaseForm(lotToRelease)}
-									closeReleaseForm={handleCloseReleaseForm}
-									releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
-									shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
-									openAcceptForm={(lotToAccept) => setShowAcceptForm(lotToAccept)}
-									closeAcceptForm={handleCloseAcceptForm}
-									registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
-									lot={lot}
-								/>
-							);
-						})}
-					</div>
+		<div className={"fullView"}>
+			<div className={"navColumn"}>
+				<h3>Garage Status</h3>
+				<p>Occupancy: {garage.occupancy}</p>
+				<p>IsFull: {garage.isFull ? "yup" : "nah-uh"}</p>
+				<Button
+					variant={"outline-info"}
+					size={"lg"}
+					onClick={handleShowAcceptForm}
+					disabled={garage.isFull}
+				>
+					Accept Vehicle
+				</Button>
+			</div>
 
-					<AcceptInGarageForm
-						show={showAcceptInGarageForm}
-						handleClose={handleCloseAcceptInGarageForm}
-						lots={garage.lots}
-						submitRegistration={(vehicle) => registerVehicleInGarage(vehicle)}
-					/>
-				</Col>
-			</Row>
-		</Container>
+			<div className={"lotArea"}>
+				{garage.lots.map((lot) => {
+					return (
+						<SingleLot
+							key={lot.lotNumber}
+							shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
+							openReleaseForm={(lotToRelease) => setShowReleaseForm(lotToRelease)}
+							closeReleaseForm={handleCloseReleaseForm}
+							releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
+							shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
+							openAcceptForm={(lotToAccept) => setShowAcceptForm(lotToAccept)}
+							closeAcceptForm={handleCloseAcceptForm}
+							registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
+							lot={lot}
+						/>
+					);
+				})}
+			</div>
+
+			<AcceptInGarageForm
+				show={showAcceptInGarageForm}
+				handleClose={handleCloseAcceptInGarageForm}
+				lots={garage.lots}
+				submitRegistration={(vehicle) => registerVehicleInGarage(vehicle)}
+			/>
+		</div>
 	);
 }
 
