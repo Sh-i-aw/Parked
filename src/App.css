@@ -38,10 +38,10 @@
 }
 
 .occupancyStatus {
-  color: #70c770;
+  color: #FFFFFFDF;
   font-size: 1.2em;
   font-weight: 505;
-  text-shadow: 0 0 1px rgba(225,225,225,0.6);
+  text-shadow: 0 0 2px rgba(69, 194, 0, 0.8);
   margin: 10px 0;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .full {
-  color: #f85757;
+  text-shadow: 0 0 2px rgba(255, 12, 12, 0.8);
 }
 
 .navAcceptBtn {
@@ -63,7 +63,7 @@
   margin-top: 15px;
   width: 100%;
   padding: 10px;
-  background-color: lightblue;
+  background-color: #82cce3;
   color: #FFFFFFEF;
   text-shadow: 0 0 1px rgba(0,0,0,0.2);
   box-shadow: 0 0 3px rgba(0,0,0,0.5);
