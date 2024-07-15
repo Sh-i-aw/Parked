@@ -18,6 +18,15 @@
   padding: 35px 45px 35px 35px;
 }
 
+.parkedLogo {
+  width: 7em;
+  height: 7em;
+  margin: 5px;
+  align-self: center;
+  fill: #d8edf6;
+  filter: drop-shadow(2px 3px 4px rgb(0 0 0 / 0.4));
+}
+
 .lotArea {
   flex-grow: 1;
   display:flex;
@@ -120,7 +129,7 @@
   font-family: Helvetica, sans-serif;
   font-weight: 525;
   color: rgba(29, 91, 91, 0.75);
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* Subtle gray shadow */
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .lotCost p {
