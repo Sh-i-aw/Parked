@@ -14,6 +14,11 @@ function AcceptVehicleForm(props) {
 	const [plateIsValid, setPlateIsValid] = useState(true);
 	const [disableSubmit, setDisableSubmit] = useState(true);
 
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+		}
+	};
 	const closeFormAndClear = () => {
 		closeForm();
 		setPlateIsValid(true);
@@ -44,6 +49,7 @@ function AcceptVehicleForm(props) {
 						<Form.Control
 							type="text"
 							onChange={handlePlateNumberChange}
+							onKeyPress={handleKeyPress}
 							placeholder={"Enter license plate"}
 						/>
 						{!plateIsValid && "2-8 alphanumeric characters, '$' allowed"}
