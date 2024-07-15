@@ -79,14 +79,9 @@ function App() {
 					<p>Occupancy: {garage.occupancy} / 3</p>
 					<p>{garage.isFull ? "Full" : "Available"}</p>
 				</div>
-				<Button
-					variant={"outline-info"}
-					size={"lg"}
-					onClick={handleShowAcceptForm}
-					disabled={garage.isFull}
-				>
+				<button className={"navAcceptBtn"} onClick={handleShowAcceptForm} disabled={garage.isFull}>
 					Accept Vehicle
-				</Button>
+				</button>
 			</div>
 
 			<div className={"lotArea"}>
