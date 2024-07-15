@@ -1,9 +1,10 @@
-import Button from "react-bootstrap/Button";
 import ReleaseVehicleForm from "./ReleaseVehicleForm";
 import AcceptVehicleForm from "./AcceptVehicleForm";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import React from "react";
+import { ReactComponent as Vroom } from "../svg/vroom.svg";
+import { ReactComponent as Clock } from "../svg/tik-tok.svg";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 const duration = require("dayjs/plugin/duration");
@@ -41,34 +42,58 @@ function SingleLot(props) {
 		return () => clearInterval(interval);
 	}, [lot.entryTime, shouldShowReleaseForm]);
 
-	let status = lot.occupied ? "Not Empty" : "Empty";
-
 	// const timeElapsed = dayjs().diff(lot.entryTime, 'second');
-	lot.duration = dayjs.duration(timeElapsed, "seconds").format("m[min] s[seconds]");
+	lot.duration = dayjs.duration(timeElapsed, "seconds").format("m[min] s[sec]");
 
 	const segment = Math.floor(timeElapsed / 30);
-	lot.totalCharge = segment > 4 ? 2 : segment;
+	lot.totalCharge = segment > 4 ? 4 : segment;
+
+	const entryTime = dayjs(lot.entryTime).tz("America/Toronto");
 
 	return (
-		<div>
-			<h2>{lot.lotNumber}</h2>
-			<p>{status}</p>
-			<p>{lot.plateNumber}</p>
-			{lot.occupied && (
-				<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
-			)}
-			{timeElapsed > 0 && <p>{lot.duration}</p>}
+		<div className={"lotTile"}>
+			<div className={"lotHeader"}>A0{lot.lotNumber}</div>
 
-			<br />
-			{lot.occupied ? (
-				<Button variant={"info"} onClick={() => openReleaseForm(lot.lotNumber)}>
-					$
-				</Button>
-			) : (
-				<Button variant={"info"} onClick={() => openAcceptForm(lot.lotNumber)}>
-					+
-				</Button>
+			{lot.occupied && (
+				<div className={"lotDetails"}>
+					<Vroom class={"carIcon"}></Vroom>
+					<p className={"plateNumber"}>{lot.plateNumber}</p>
+					<div className={"timeStamp"}>
+						<Clock className={"clockIcon"}></Clock>
+						<p className={"days"}>{entryTime.format("YYYY-MM-DD")}</p>
+						<p className={"hours"}>{entryTime.format("HH:mm:ss")}</p>
+					</div>
+					<div className={"lotCost"}>
+						<p>Duration:</p>
+						<p>{timeElapsed > 0 ? lot.duration : "loading..."}</p>
+						<p>Total:</p>
+						<p>${lot.totalCharge ? lot.totalCharge : 0}</p>
+					</div>
+				</div>
 			)}
+
+			<div className={"lotBtn"}>
+				{lot.occupied ? (
+					<button
+						onClick={(e) => {
+							e.target.blur();
+							return openReleaseForm(lot.lotNumber);
+						}}
+					>
+						$
+					</button>
+				) : (
+					<button
+						className={"acceptButton"}
+						onClick={(e) => {
+							e.target.blur();
+							return openAcceptForm(lot.lotNumber);
+						}}
+					>
+						+
+					</button>
+				)}
+			</div>
 
 			<ReleaseVehicleForm
 				show={shouldShowReleaseForm}

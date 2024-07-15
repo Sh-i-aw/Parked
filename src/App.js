@@ -84,22 +84,24 @@ function App() {
 					</Button>
 				</Col>
 				<Col>
-					{garage.lots.map((lot) => {
-						return (
-							<SingleLot
-								key={lot.lotNumber}
-								shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
-								openReleaseForm={(lotToRelease) => setShowReleaseForm(lotToRelease)}
-								closeReleaseForm={handleCloseReleaseForm}
-								releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
-								shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
-								openAcceptForm={(lotToAccept) => setShowAcceptForm(lotToAccept)}
-								closeAcceptForm={handleCloseAcceptForm}
-								registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
-								lot={lot}
-							/>
-						);
-					})}
+					<div className={"lotArea"}>
+						{garage.lots.map((lot) => {
+							return (
+								<SingleLot
+									key={lot.lotNumber}
+									shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
+									openReleaseForm={(lotToRelease) => setShowReleaseForm(lotToRelease)}
+									closeReleaseForm={handleCloseReleaseForm}
+									releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
+									shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
+									openAcceptForm={(lotToAccept) => setShowAcceptForm(lotToAccept)}
+									closeAcceptForm={handleCloseAcceptForm}
+									registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
+									lot={lot}
+								/>
+							);
+						})}
+					</div>
 
 					<AcceptInGarageForm
 						show={showAcceptInGarageForm}

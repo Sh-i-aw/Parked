@@ -1,6 +1,153 @@
+@import url('https://fonts.cdnfonts.com/css/fe-font');
+
+.body{
+  margin: 0;
+}
+
 .navColumn {
+  background-color: rgba(240,240,240,0.5);
   min-width: 250px;
   padding: 20px;
+}
+
+.lotArea {
+  display:flex;
+  background-color: #e5e5e58f;
+  height: 100vh;
+  margin: 0;
+}
+
+.lotTile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255,255,255,0.5);
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  width: 220px;
+  min-width: 220px;
+  height: 440px;
+  min-height: 440px;
+  box-shadow: 0 0 8px 3px #d3ecf8DF;
+  border-radius: 1rem;
+}
+
+.lotTile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 8px 3px #d3ecf8FF;
+}
+
+.lotHeader {
+  justify-self: flex-start;
+  font-size: 2rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.lotDetails {
+  height: 65%;
+  align-content: center;
+  display: grid;
+}
+
+.carIcon {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  margin-top: 5px;
+  justify-self: center;
+  fill: #606060DF;
+}
+
+.plateNumber {
+  justify-self: center;
+  font-family: "FE-Font", sans-serif;
+  letter-spacing: 0.1em;
+  color: #606060;
+}
+
+/*       Time stamp start      */
+
+.timeStamp {
+  background-color: #D3D3D3DF;
+  padding: 2px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 0.9em;
+  color: rgba(255, 255, 239, 0.9);
+}
+
+.clockIcon {
+  display: inline-block;
+  width: 1.35em;
+  height: 1.35em;
+  margin-right: 5px;
+  stroke: rgba(255, 255, 239, 0.9);
+}
+
+.days {
+  display: inline-block;
+  margin: 0;
+  align-self: center;
+}
+
+.hours {
+  align-self: center;
+  margin: 0 5px;
+}
+
+/*         Time stamp end         */
+
+.lotCost {
+  margin: 15px 0 -10px 0 ;
+  grid-template-columns: auto 1fr;
+  gap: 4px;
+  display: grid;
+  font-family: Helvetica, sans-serif;
+  font-weight: 525;
+  color: rgba(29, 91, 91, 0.75);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* Subtle gray shadow */
+}
+
+.lotCost p {
+  margin: 3px;
+}
+
+.lotBtn {
+  flex-grow: 1;
+  display: grid;
+  align-content: center;
+}
+
+.lotTile button {
+  justify-self: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.35em;
+  border: none;
+  border-radius: 35%;
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lotTile .acceptButton {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.8em;
+  padding-bottom: 4px;
+  margin-bottom: 40px;
+}
+
+.lotTile button:hover,
+.lotTile button:focus{
+  background-color: darkcyan;
+  font-weight: bolder;
 }
 
 .App {
