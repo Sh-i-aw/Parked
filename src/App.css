@@ -40,7 +40,6 @@
 
 .lotHeader {
   justify-self: flex-start;
-  margin-bottom: 10px;
   font-size: 2rem;
   font-weight: bold;
   color: grey;
@@ -60,6 +59,15 @@
   justify-self: center;
   fill: #606060DF;
 }
+
+.plateNumber {
+  justify-self: center;
+  font-family: "FE-Font", sans-serif;
+  letter-spacing: 0.1em;
+  color: #606060;
+}
+
+/*       Time stamp start      */
 
 .timeStamp {
   background-color: lightgrey;
@@ -90,14 +98,22 @@
 .hours {
   align-self: center;
   margin: 0 5px;
-  }
+}
 
+/*         Time stamp end         */
 
-.plateNumber {
-  justify-self: center;
-  font-family: "FE-Font", sans-serif;
-  letter-spacing: 0.1em;
-  color: #606060;
+.lotCost {
+  margin: 15px 0 -10px 0 ;
+  grid-template-columns: auto 1fr;
+  gap: 4px;
+  display: grid;
+  font-family: Helvetica, sans-serif;
+  font-weight: 525;
+  color: rgba(55, 94, 83, 0.75);
+}
+
+.lotCost p {
+  margin: 3px;
 }
 
 .lotBtn {

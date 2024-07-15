@@ -43,7 +43,7 @@ function SingleLot(props) {
 	}, [lot.entryTime, shouldShowReleaseForm]);
 
 	// const timeElapsed = dayjs().diff(lot.entryTime, 'second');
-	lot.duration = dayjs.duration(timeElapsed, "seconds").format("m[min] s[seconds]");
+	lot.duration = dayjs.duration(timeElapsed, "seconds").format("m[min] s[sec]");
 
 	const segment = Math.floor(timeElapsed / 30);
 	lot.totalCharge = segment > 4 ? 4 : segment;
@@ -63,8 +63,12 @@ function SingleLot(props) {
 						<p className={"days"}>{entryTime.format("YYYY-MM-DD")}</p>
 						<p className={"hours"}>{entryTime.format("HH:mm:ss")}</p>
 					</div>
-					<p>{timeElapsed > 0 ? lot.duration : "loading..."}</p>
-					<p>$ {lot.totalCharge ? lot.totalCharge : 0}</p>
+					<div className={"lotCost"}>
+						<p>Duration:</p>
+						<p>{timeElapsed > 0 ? lot.duration : "loading..."}</p>
+						<p>Total:</p>
+						<p>${lot.totalCharge ? lot.totalCharge : 0}</p>
+					</div>
 				</div>
 			)}
 
