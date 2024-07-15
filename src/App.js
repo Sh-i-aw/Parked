@@ -68,13 +68,17 @@ function App() {
 		setGarage(newGarage);
 	};
 
+	const statusDisplayClass = garage.isFull ? "occupancyStatus full" : "occupancyStatus";
+
 	return (
 		<div className={"fullView"}>
 			<div className={"navColumn"}>
 				<Logo className={"parkedLogo"}></Logo>
-				<h3>Garage Status</h3>
-				<p>Occupancy: {garage.occupancy}</p>
-				<p>IsFull: {garage.isFull ? "yup" : "nah-uh"}</p>
+				<h3 className={"garageTitle"}>Garage Status</h3>
+				<div className={statusDisplayClass}>
+					<p>Occupancy: {garage.occupancy} / 3</p>
+					<p>{garage.isFull ? "Full" : "Available"}</p>
+				</div>
 				<Button
 					variant={"outline-info"}
 					size={"lg"}

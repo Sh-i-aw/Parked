@@ -27,6 +27,37 @@
   filter: drop-shadow(2px 3px 4px rgb(0 0 0 / 0.4));
 }
 
+.garageTitle {
+  margin-top: 20px;
+  font-weight: 505;
+  letter-spacing: -1px;
+  color: #e8e8e8;
+  text-shadow: 0 0 2px rgba(0,0,0,0.6);
+}
+
+.occupancyStatus {
+  color: #4e9b4e;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.15em;
+  font-weight: 505;
+  text-shadow: 0 0 2px rgba(255,255,255,0.6);
+  margin: 10px 0;
+}
+
+.occupancyStatus p {
+  margin: 3px;
+}
+
+.full {
+  color: #ff4c4c;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.15em;
+  font-weight: 502;
+  text-shadow: 0 0 2px rgba(255,255,255,0.8);
+  margin: 10px 0;
+}
+/*nav bar content end */
+
 .lotArea {
   flex-grow: 1;
   display:flex;
