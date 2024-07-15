@@ -74,8 +74,8 @@
   color: #FFFFFF8F;
 }
 
-.navAcceptBtn:hover,
-.navAcceptBtn:focus {
+.navAcceptBtn:hover:enabled,
+.navAcceptBtn:focus:enabled {
   transform: translateY(-2px);
   box-shadow: 0 2px 3px rgba(0,0,0,0.4);
 }
@@ -224,7 +224,7 @@
 }
 
 .lotTile button:hover,
-.lotTile button:focus{
+.lotTile button:focus {
   background-color: #45b8de;
   font-weight: bolder;
 }
