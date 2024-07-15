@@ -1,61 +1,78 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {useState} from "react";
-import {Lot} from "./Lot";
+import { useState } from "react";
+import { Lot } from "./Lot";
 import dayjs from "dayjs";
-import React from 'react';
+import React from "react";
+import plateValidation from "../helper/plateValidation";
 
-function AcceptVehicleForm (props) {
-    const {show, lotNumber, closeForm, submitRegistration} = props;
+function AcceptVehicleForm(props) {
+	const { show, lotNumber, closeForm, submitRegistration } = props;
 
-    const [plateNumber, setPlateNumber] = useState('');
-    const handlePlateNumberChange = (e) => setPlateNumber(e.target.value);
+	const [plateNumber, setPlateNumber] = useState("");
+	const [plateIsValid, setPlateIsValid] = useState(true);
+	const [disableSubmit, setDisableSubmit] = useState(true);
 
-    const createNewRegistration = () => {
-        closeForm();
-        return new Lot (
-                lotNumber,
-                true,
-                plateNumber,
-                dayjs()
-                );
-    }
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+		}
+	};
+	const closeFormAndClear = () => {
+		closeForm();
+		setPlateIsValid(true);
+		setDisableSubmit(true);
+	};
 
-    return (
-        <Modal
-          show={show}
-          onHide={closeForm}
-          backdrop={"static"}
-          keyboard={false}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title> Accept A Vehicle in Lot {lotNumber}</Modal.Title>
-            </Modal.Header>
+	const handlePlateNumberChange = (e) => {
+		const isValid = plateValidation(e.target.value);
+		setPlateIsValid(isValid);
+		setDisableSubmit(!isValid);
+		setPlateNumber(e.target.value);
+	};
 
-            <Modal.Body>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>License Plate</Form.Label>
-                        <Form.Control type="text"
-                                      onChange={handlePlateNumberChange}
-                                      placeholder={"Enter license plate"}
-                        />
-                    </Form.Group>
-                </Form>
-            </Modal.Body>
+	const createNewRegistration = () => {
+		closeForm();
+		setDisableSubmit(true);
+		return new Lot(lotNumber, true, plateNumber, dayjs());
+	};
 
-            <Modal.Footer>
-                <Button variant={"light"} onClick={closeForm}>
-                    Cancel
-                </Button>
-                <Button variant={"info"} onClick={() =>submitRegistration(createNewRegistration())}>
-                    Register
-                </Button>
-            </Modal.Footer>
+	return (
+		<Modal show={show} onHide={closeForm} backdrop={"static"} keyboard={false}>
+			<Modal.Header>
+				<Modal.Title> Accept A Vehicle in Lot {lotNumber}</Modal.Title>
+			</Modal.Header>
 
-        </Modal>
-    )
+			<Modal.Body>
+				<Form>
+					<Form.Group>
+						<Form.Label>License Plate</Form.Label>
+						<Form.Control
+							type="text"
+							onChange={handlePlateNumberChange}
+							onKeyPress={handleKeyPress}
+							placeholder={"Enter license plate"}
+						/>
+						{!plateIsValid && "2-8 alphanumeric characters, '$' allowed"}
+					</Form.Group>
+				</Form>
+			</Modal.Body>
+
+			<Modal.Footer>
+				<Button variant={"light"} onClick={closeFormAndClear}>
+					Cancel
+				</Button>
+				<Button
+					disabled={disableSubmit}
+					variant={"info"}
+					onClick={() => submitRegistration(createNewRegistration())}
+				>
+					Register
+				</Button>
+			</Modal.Footer>
+		</Modal>
+	);
 }
 
 export default AcceptVehicleForm;
