@@ -8,6 +8,7 @@ import AcceptInGarageForm from "./Component/AcceptInGarageForm";
 
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { ReactComponent as Logo } from "./svg/parkedLogo.svg";
 
 function App() {
 	const [garage, setGarage] = useState(new Garage());
@@ -16,7 +17,10 @@ function App() {
 	const [showAcceptForm, setShowAcceptForm] = useState(0);
 	const [lotToFree, setLotToFree] = useState(0);
 
-	const handleShowAcceptForm = () => setShowAcceptInGarageForm(true);
+	const handleShowAcceptForm = (e) => {
+		e.target.blur();
+		setShowAcceptInGarageForm(true);
+	};
 	const handleCloseAcceptInGarageForm = () => setShowAcceptInGarageForm(false);
 	const handleCloseAcceptForm = () => setShowAcceptForm(0);
 	const handleCloseReleaseForm = () => setShowReleaseForm(0);
@@ -67,51 +71,48 @@ function App() {
 		setGarage(newGarage);
 	};
 
-	return (
-		<Container fluid>
-			<Row className="vh-100">
-				<Col sm={2} className="navColumn">
-					<h3>Garage Status</h3>
-					<p>Occupancy: {garage.occupancy}</p>
-					<p>IsFull: {garage.isFull ? "yup" : "nah-uh"}</p>
-					<Button
-						variant={"outline-info"}
-						size={"lg"}
-						onClick={handleShowAcceptForm}
-						disabled={garage.isFull}
-					>
-						Accept Vehicle
-					</Button>
-				</Col>
-				<Col>
-					<div className={"lotArea"}>
-						{garage.lots.map((lot) => {
-							return (
-								<SingleLot
-									key={lot.lotNumber}
-									shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
-									openReleaseForm={(lotToRelease) => setShowReleaseForm(lotToRelease)}
-									closeReleaseForm={handleCloseReleaseForm}
-									releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
-									shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
-									openAcceptForm={(lotToAccept) => setShowAcceptForm(lotToAccept)}
-									closeAcceptForm={handleCloseAcceptForm}
-									registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
-									lot={lot}
-								/>
-							);
-						})}
-					</div>
+	const statusDisplayClass = garage.isFull ? "occupancyStatus full" : "occupancyStatus";
 
-					<AcceptInGarageForm
-						show={showAcceptInGarageForm}
-						handleClose={handleCloseAcceptInGarageForm}
-						lots={garage.lots}
-						submitRegistration={(vehicle) => registerVehicleInGarage(vehicle)}
-					/>
-				</Col>
-			</Row>
-		</Container>
+	return (
+		<div className={"fullView"}>
+			<div className={"navColumn"}>
+				<Logo className={"parkedLogo"}></Logo>
+				<h3 className={"garageTitle"}>Garage Status</h3>
+				<div className={statusDisplayClass}>
+					<p>Occupancy: {garage.occupancy} / 3</p>
+					<p>{garage.isFull ? "Full" : "Available"}</p>
+				</div>
+				<button className={"navAcceptBtn"} onClick={handleShowAcceptForm} disabled={garage.isFull}>
+					Accept Vehicle
+				</button>
+			</div>
+
+			<div className={"lotArea"}>
+				{garage.lots.map((lot) => {
+					return (
+						<SingleLot
+							key={lot.lotNumber}
+							shouldShowReleaseForm={showReleaseForm === lot.lotNumber}
+							openReleaseForm={(lotToRelease) => setShowReleaseForm(lotToRelease)}
+							closeReleaseForm={handleCloseReleaseForm}
+							releaseVehicle={(lotToRelease) => setLotToFree(lotToRelease)}
+							shouldShowAcceptForm={showAcceptForm === lot.lotNumber}
+							openAcceptForm={(lotToAccept) => setShowAcceptForm(lotToAccept)}
+							closeAcceptForm={handleCloseAcceptForm}
+							registerVehicle={(vehicle) => registerVehicleInGarage(vehicle)}
+							lot={lot}
+						/>
+					);
+				})}
+			</div>
+
+			<AcceptInGarageForm
+				show={showAcceptInGarageForm}
+				handleClose={handleCloseAcceptInGarageForm}
+				lots={garage.lots}
+				submitRegistration={(vehicle) => registerVehicleInGarage(vehicle)}
+			/>
+		</div>
 	);
 }
 

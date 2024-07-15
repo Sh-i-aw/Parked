@@ -1,20 +1,99 @@
 @import url('https://fonts.cdnfonts.com/css/fe-font');
-
-.body{
+.body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fullView {
+  display: flex;
 }
 
 .navColumn {
-  background-color: rgba(240,240,240,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgba(59, 59, 59, 0.5);
   min-width: 250px;
-  padding: 20px;
+  padding: 35px 45px 35px 35px;
+  font-family: Helvetica, sans-serif;
 }
 
+.parkedLogo {
+  width: 7em;
+  height: 7em;
+  margin: 5px;
+  align-self: center;
+  fill: #d8edf6;
+  filter: drop-shadow(0px 3px 4px rgb(0 0 0 / 0.4));
+}
+
+.garageTitle {
+  margin-top: 20px;
+  font-weight: 505;
+  letter-spacing: -1px;
+  color: #e8e8e8;
+  text-shadow: 0 0 2px rgba(0,0,0,0.6);
+  font-family: inherit;
+}
+
+.occupancyStatus {
+  color: #70c770;
+  font-size: 1.2em;
+  font-weight: 505;
+  text-shadow: 0 0 1px rgba(225,225,225,0.6);
+  margin: 10px 0;
+}
+
+.occupancyStatus p {
+  margin: 3px;
+}
+
+.full {
+  color: #f85757;
+}
+
+.navAcceptBtn {
+  border: none;
+  border-radius: 5px;
+  align-self: center;
+  font-size: 1.2em;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background-color: lightblue;
+  color: #FFFFFFEF;
+  text-shadow: 0 0 1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+.navAcceptBtn:disabled {
+  background-color: #ADD8E67F;
+  color: #FFFFFF8F;
+}
+
+.navAcceptBtn:hover,
+.navAcceptBtn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+}
+
+.navAcceptBtn:active {
+  background-color: #90cee3;;
+  box-shadow: inset 0px 0px 3px rgba(0,0,0, 0.6);
+}
+
+/*nav bar content end */
+
 .lotArea {
+  flex-grow: 1;
   display:flex;
+  flex-wrap: wrap;
   background-color: #e5e5e58f;
   height: 100vh;
-  margin: 0;
+  padding: 20px;
 }
 
 .lotTile{
@@ -110,7 +189,7 @@
   font-family: Helvetica, sans-serif;
   font-weight: 525;
   color: rgba(29, 91, 91, 0.75);
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* Subtle gray shadow */
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .lotCost p {
@@ -146,7 +225,7 @@
 
 .lotTile button:hover,
 .lotTile button:focus{
-  background-color: darkcyan;
+  background-color: #45b8de;
   font-weight: bolder;
 }
 
