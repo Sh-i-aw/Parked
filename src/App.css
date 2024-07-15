@@ -25,7 +25,7 @@
   margin: 5px;
   align-self: center;
   fill: #d8edf6;
-  filter: drop-shadow(2px 3px 4px rgb(0 0 0 / 0.4));
+  filter: drop-shadow(0px 3px 4px rgb(0 0 0 / 0.4));
 }
 
 .garageTitle {
@@ -51,11 +51,6 @@
 
 .full {
   color: #f85757;
-  font-family: Helvetica, sans-serif;
-  font-size: 1.15em;
-  font-weight: 502;
-  text-shadow: 0 0 2px rgba(255,255,255,0.8);
-  margin: 10px 0;
 }
 
 .navAcceptBtn {
@@ -63,13 +58,20 @@
   border-radius: 5px;
   align-self: center;
   font-size: 1.2em;
-  font-weight: 502;
-  margin-top: 10px;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  margin-top: 15px;
   width: 100%;
   padding: 10px;
   background-color: lightblue;
-  color: #FFFFFFAF;
+  color: #FFFFFFEF;
   text-shadow: 0 0 1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+.navAcceptBtn:disabled {
+  background-color: #ADD8E67F;
+  color: #FFFFFF8F;
 }
 
 /*nav bar content end */
