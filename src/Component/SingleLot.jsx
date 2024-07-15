@@ -45,7 +45,7 @@ function SingleLot(props) {
 	lot.duration = dayjs.duration(timeElapsed, "seconds").format("m[min] s[seconds]");
 
 	const segment = Math.floor(timeElapsed / 30);
-	lot.totalCharge = segment > 4 ? 2 : segment;
+	lot.totalCharge = segment > 4 ? 4 : segment;
 
 	return (
 		<div className={"lotTile"}>
