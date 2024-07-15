@@ -12,7 +12,7 @@
 
 .lotArea {
   display:flex;
-  background-color: #e5e5e57A;
+  background-color: #e5e5e58f;
   height: 100vh;
   margin: 0;
 }
@@ -70,7 +70,7 @@
 /*       Time stamp start      */
 
 .timeStamp {
-  background-color: lightgrey;
+  background-color: #D3D3D3DF;
   padding: 2px;
   border-radius: 6px;
   display: flex;
@@ -78,7 +78,7 @@
   flex-wrap: wrap;
   justify-content: center;
   font-size: 0.9em;
-  color: #FFFFFFAF;
+  color: rgba(255, 255, 239, 0.9);
 }
 
 .clockIcon {
@@ -86,7 +86,7 @@
   width: 1.35em;
   height: 1.35em;
   margin-right: 5px;
-  stroke: #FFFFFFAF;
+  stroke: rgba(255, 255, 239, 0.9);
 }
 
 .days {
@@ -109,7 +109,8 @@
   display: grid;
   font-family: Helvetica, sans-serif;
   font-weight: 525;
-  color: rgba(55, 94, 83, 0.75);
+  color: rgba(29, 91, 91, 0.75);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* Subtle gray shadow */
 }
 
 .lotCost p {
