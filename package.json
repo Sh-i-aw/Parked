@@ -1,5 +1,6 @@
 {
   "name": "parked",
+  "homepage": "https://sh-i-aw.github.io/Parked/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
