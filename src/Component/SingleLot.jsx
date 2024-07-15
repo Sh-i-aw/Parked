@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import React from "react";
 import { ReactComponent as Vroom } from "../svg/vroom.svg";
+import { ReactComponent as Clock } from "../svg/tik-tok.svg";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 const duration = require("dayjs/plugin/duration");
@@ -47,6 +48,8 @@ function SingleLot(props) {
 	const segment = Math.floor(timeElapsed / 30);
 	lot.totalCharge = segment > 4 ? 4 : segment;
 
+	const entryTime = dayjs(lot.entryTime).tz("America/Toronto");
+
 	return (
 		<div className={"lotTile"}>
 			<div className={"lotHeader"}>A0{lot.lotNumber}</div>
@@ -55,7 +58,11 @@ function SingleLot(props) {
 				<div className={"lotDetails"}>
 					<Vroom class={"carIcon"}></Vroom>
 					<p className={"plateNumber"}>{lot.plateNumber}</p>
-					<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
+					<div className={"timeStamp"}>
+						<Clock className={"clockIcon"}></Clock>
+						<p className={"days"}>{entryTime.format("YYYY-MM-DD")}</p>
+						<p className={"hours"}>{entryTime.format("HH:mm:ss")}</p>
+					</div>
 					<p>{timeElapsed > 0 ? lot.duration : "loading..."}</p>
 					<p>$ {lot.totalCharge ? lot.totalCharge : 0}</p>
 				</div>
