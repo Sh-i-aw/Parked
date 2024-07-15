@@ -22,6 +22,7 @@ function AcceptVehicleForm(props) {
 	const closeFormAndClear = () => {
 		closeForm();
 		setPlateIsValid(true);
+		setDisableSubmit(true);
 	};
 
 	const handlePlateNumberChange = (e) => {
@@ -33,6 +34,7 @@ function AcceptVehicleForm(props) {
 
 	const createNewRegistration = () => {
 		closeForm();
+		setDisableSubmit(true);
 		return new Lot(lotNumber, true, plateNumber, dayjs());
 	};
 
