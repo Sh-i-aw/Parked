@@ -17,7 +17,10 @@ function App() {
 	const [showAcceptForm, setShowAcceptForm] = useState(0);
 	const [lotToFree, setLotToFree] = useState(0);
 
-	const handleShowAcceptForm = () => setShowAcceptInGarageForm(true);
+	const handleShowAcceptForm = (e) => {
+		e.target.blur();
+		setShowAcceptInGarageForm(true);
+	};
 	const handleCloseAcceptInGarageForm = () => setShowAcceptInGarageForm(false);
 	const handleCloseAcceptForm = () => setShowAcceptForm(0);
 	const handleCloseReleaseForm = () => setShowReleaseForm(0);
