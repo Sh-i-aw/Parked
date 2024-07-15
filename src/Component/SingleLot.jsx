@@ -66,7 +66,6 @@ function SingleLot(props) {
 			<div className={"lotBtn"}>
 				{lot.occupied ? (
 					<button
-						className={"lotButton"}
 						onClick={(e) => {
 							e.target.blur();
 							return openReleaseForm(lot.lotNumber);
@@ -76,7 +75,7 @@ function SingleLot(props) {
 					</button>
 				) : (
 					<button
-						className={"lotButton"}
+						className={"acceptButton"}
 						onClick={(e) => {
 							e.target.blur();
 							return openAcceptForm(lot.lotNumber);

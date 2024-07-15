@@ -1,3 +1,4 @@
+
 .body{
   margin: 0;
 }
@@ -8,17 +9,31 @@
   padding: 20px;
 }
 
+.lotArea {
+  display:flex;
+  background-color: #e5e5e57A;
+  padding: 0px;
+  height: 100vh;
+  margin: 0;
+}
+
 .lotTile{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255,255,255,0.5);
   justify-content: space-between;
   margin: 20px;
   padding: 20px;
-  min-width: 220px;
-  min-height: 440px;
-  border: 2px double lightblue;
+  width: 220px;
+  height: 440px;
+  box-shadow: 0 0 8px 3px #d3ecf8DF;
   border-radius: 1rem;
+}
+
+.lotTile:hover {
+  transform: translateY(3px);
+  box-shadow: 0 3px 8px 3px #d3ecf8FF;
 }
 
 .lotHeader {
@@ -38,28 +53,37 @@
 .carIcon {
   width: 100px;
   height: 100px;
+  padding: 5px;
+  margin-top: 5px;
   justify-self: center;
-  fill: dimgray;
+  fill: #797979;
 }
 
 .lotBtn {
   flex-grow: 1;
   display: grid;
   align-content: center;
-  padding-bottom: 20px;
 }
 
 .lotTile button {
   justify-self: center;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.35em;
   border: none;
-  border-radius: 40%;
+  border-radius: 35%;
   background-color: lightblue;
   color: white;
-  font-size: 1.5em;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lotTile .acceptButton {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.8em;
+  padding-bottom: 4px;
+  margin-bottom: 20px;
 }
 
 .lotTile button:hover,

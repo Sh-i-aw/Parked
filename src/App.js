@@ -84,7 +84,7 @@ function App() {
 					</Button>
 				</Col>
 				<Col>
-					<div style={{ display: "flex" }}>
+					<div className={"lotArea"}>
 						{garage.lots.map((lot) => {
 							return (
 								<SingleLot
