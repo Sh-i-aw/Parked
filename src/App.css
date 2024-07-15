@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/fe-font');
 
 .body{
   margin: 0;
@@ -12,7 +13,6 @@
 .lotArea {
   display:flex;
   background-color: #e5e5e57A;
-  padding: 0px;
   height: 100vh;
   margin: 0;
 }
@@ -32,7 +32,7 @@
 }
 
 .lotTile:hover {
-  transform: translateY(3px);
+  transform: translateY(-3px);
   box-shadow: 0 3px 8px 3px #d3ecf8FF;
 }
 
@@ -56,7 +56,14 @@
   padding: 5px;
   margin-top: 5px;
   justify-self: center;
-  fill: #797979;
+  fill: #606060DF;
+}
+
+.plateNumber {
+  justify-self: center;
+  font-family: "FE-Font", sans-serif;
+  letter-spacing: 0.1em;
+  color: #606060;
 }
 
 .lotBtn {

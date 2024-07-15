@@ -54,10 +54,8 @@ function SingleLot(props) {
 			{lot.occupied && (
 				<div className={"lotDetails"}>
 					<Vroom class={"carIcon"}></Vroom>
-					<p>{lot.plateNumber}</p>
-					<br />
+					<p className={"plateNumber"}>{lot.plateNumber}</p>
 					<p>{dayjs(lot.entryTime).tz("America/Toronto").format("YYYY-MM-DD HH:mm:ss")}</p>
-					<br />
 					<p>{timeElapsed > 0 ? lot.duration : "loading..."}</p>
 					<p>$ {lot.totalCharge ? lot.totalCharge : 0}</p>
 				</div>
