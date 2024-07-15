@@ -7,7 +7,6 @@ import SingleLot from "./Component/SingleLot";
 import AcceptInGarageForm from "./Component/AcceptInGarageForm";
 
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
 import { ReactComponent as Logo } from "./svg/parkedLogo.svg";
 
 function App() {
